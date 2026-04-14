@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<h1>📈 Smart Dashboard</h1>
+
+<form method="POST">
+    <select name="region">
+        <option value="">All Regions</option>
+        {% for r in data.regions %}
+        <option value="{{r}}">{{r}}</option>
+        {% endfor %}
+    </select>
+
+    <select name="year">
+        <option value="">All Years</option>
+        {% for y in data.years %}
+        <option value="{{y}}">{{y}}</option>
+        {% endfor %}
+    </select>
+
+    <button type="submit">Apply Filter</button>
+</form>
+
+<div class="kpi">
+    <div class="card">Avg: {{data.avg}}</div>
+    <div class="card">Max: {{data.max}}</div>
+    <div class="card">Min: {{data.min}}</div>
+</div>
+
+<!-- GRAPHS -->
+<img src="{{ url_for('static', filename='images/trend.png') }}?{{ range(1,1000)|random }}">
+<img src="{{ url_for('static', filename='images/covid.png') }}?{{ range(1,1000)|random }}">
+<img src="{{ url_for('static', filename='images/region.png') }}?{{ range(1,1000)|random }}">
+<img src="{{ url_for('static', filename='images/seasonal.png') }}?{{ range(1,1000)|random }}">
+<img src="{{ url_for('static', filename='images/heatmap.png') }}?{{ range(1,1000)|random }}">
+<img src="{{ url_for('static', filename='images/forecast.png') }}?{{ range(1,1000)|random }}">
+
+</body>
+</html>
